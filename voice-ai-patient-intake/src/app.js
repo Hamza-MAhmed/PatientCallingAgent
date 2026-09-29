@@ -17,6 +17,9 @@ app.use(cors({
 app.use(express.json({ limit: "100kb" }));
 app.use(express.urlencoded({ extended: false, limit: "100kb" }));
 
+const path = require("path");
+app.use(express.static(path.join(__dirname, "../public")));
+
 app.get("/health", (req, res) => {
   res.status(200).json(ok({
     status: "ok",
@@ -26,6 +29,10 @@ app.get("/health", (req, res) => {
 
 app.use("/patients", patientRoutes);
 app.use("/webhook/vapi", vapiRoutes);
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "../public/index.html"));
+});
 
 app.use((req, res) => {
   res.status(404).json(fail("Route not found"));
