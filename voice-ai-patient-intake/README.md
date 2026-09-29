@@ -14,7 +14,20 @@ Production-oriented Node.js/Express backend for the Voice AI Patient Registratio
 - Jest + Supertest
 
 
+## Run
+
+```bash
+npm install
+npm start
+```
+
 The service creates `patients.db` automatically in the configured location and seeds two patients if the database is empty.
+
+Tests:
+
+```bash
+npm test
+```
 
 ## Environment variables
 
